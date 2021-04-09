@@ -1,0 +1,9 @@
+<h2 fxLayoutAlign="center" class="mat-title">Evolução das minhas avaliações antropométricas</h2>
+<div style="display: block;">
+    <canvas baseChart height="100" [datasets]="lineChartData" [labels]="lineChartLabels"
+      [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+      [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
+
+  <a mat-raised-button routerLink="/paciente/avaliacao-antropometrica">Voltar</a>

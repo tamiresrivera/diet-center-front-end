@@ -1,0 +1,38 @@
+<h2 fxLayoutAlign="center" class="mat-title">Receitas</h2>
+
+<mat-table [dataSource]="dataSource" matSort>
+	<mat-header-row 
+		*matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+
+    <ng-container matColumnDef="titulo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Título
+      </mat-header-cell>
+      <mat-cell *matCellDef="let receita">
+        {{ receita.titulo }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="categoria">
+      <mat-header-cell *matHeaderCellDef>
+        Categoria
+      </mat-header-cell>
+      <mat-cell *matCellDef="let receita">
+        {{ receita.categoriaReceitaDescricao }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="acao">
+        <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+        <mat-cell *matCellDef="let receita">
+            <a routerLink="{{ '/paciente/detalhes-receita/' + receita.id }}">
+                <mat-icon matTooltip="Visualizar detalhes">visibility</mat-icon>
+            </a>
+        </mat-cell>
+    </ng-container>
+</mat-table>
+
+<mat-paginator 
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 15, 25]">
+</mat-paginator>

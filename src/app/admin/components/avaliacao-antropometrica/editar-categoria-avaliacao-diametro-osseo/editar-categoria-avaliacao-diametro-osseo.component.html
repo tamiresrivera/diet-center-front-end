@@ -1,0 +1,20 @@
+<h2 fxLayoutAlign="center" class="mat-title">Editar Categoria de Diâmetro Osseo - Avaliação Antropométrica</h2>
+    <form [formGroup]="form" fxLayoutAlign="center" novalidate>
+        <mat-list>
+          <mat-list-item>
+            <mat-form-field>
+                <input matInput
+                    placeholder="Descrição" formControlName="descricao">
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item fxLayoutAlign="center">
+            <button mat-raised-button color="light"
+                [disabled]="form.invalid" 
+                (click)="atualizar()">
+                Atualizar
+            </button>
+            &nbsp;
+            <a mat-raised-button routerLink="/admin/categoria-avaliacao-diametro-osseo">Voltar</a>
+          </mat-list-item>
+        </mat-list> 
+      </form>

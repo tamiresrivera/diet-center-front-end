@@ -1,0 +1,36 @@
+<h2 fxLayoutAlign="center" class="mat-title">Gerenciar Paciente</h2>
+    <form [formGroup]="form" fxLayoutAlign="center" novalidate>
+        <mat-list>
+                <mat-form-field>
+                    <input matInput
+                        placeholder="Nome" formControlName="nome" readonly>
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field>
+                    <mat-select placeholder="Categoria de Receitas"
+                      formControlName="cats">
+                      <mat-option 
+                        *ngFor="let categoria of categorias" 
+                        [value]="categoria.id">
+                        {{ categoria.descricao }}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                &nbsp;
+                <p>
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Observações</mat-label>
+                    <textarea matInput rows="8" formControlName="observacao"></textarea>
+                </mat-form-field>
+                </p>
+            <mat-list-item fxLayoutAlign="center">
+                <button mat-raised-button color="light"
+                    [disabled]="form.invalid" 
+                    (click)="atualizar()">
+                    Atualizar
+                </button>
+                &nbsp;
+                <a mat-raised-button routerLink="/admin/listagem">Voltar</a>
+            </mat-list-item>
+        </mat-list> 
+      </form>

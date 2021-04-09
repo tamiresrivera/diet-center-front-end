@@ -1,0 +1,70 @@
+<h2 fxLayoutAlign="center" class="mat-title">Gerenciar Avaliações Antropométricas de paciente</h2>
+
+<a mat-raised-button routerLink="{{ '/admin/adicionar-avaliacao-antropometrica/' + this.pacienteId }}">
+  <mat-icon>add</mat-icon>
+  Adicionar Nova Avaliação</a>
+&nbsp;
+<a mat-raised-button routerLink="{{ '/admin/evolucao-avaliacao-antropometrica/' + pacienteId }}">
+  <mat-icon matTooltip="Visualizar Detalhes"><span class="material-icons">
+    trending_up
+    </span></mat-icon>
+  Visualizar gráfico de evolução
+</a>
+
+<mat-table [dataSource]="dataSource" matSort>
+	<mat-header-row 
+		*matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+
+    <ng-container matColumnDef="dataHora">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Data Hora
+      </mat-header-cell>
+      <mat-cell *matCellDef="let avaliacao">
+        {{ avaliacao.dataHora | date: 'dd/MM/YYYY' : 'GMT' }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="altura">
+        <mat-header-cell *matHeaderCellDef>
+          Altura
+        </mat-header-cell>
+        <mat-cell *matCellDef="let avaliacao">
+          {{ avaliacao.altura }}
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="peso">
+        <mat-header-cell *matHeaderCellDef>
+          Peso
+        </mat-header-cell>
+        <mat-cell *matCellDef="let avaliacao">
+          {{ avaliacao.peso }}
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="imc">
+        <mat-header-cell *matHeaderCellDef>
+          IMC
+        </mat-header-cell>
+        <mat-cell *matCellDef="let avaliacao">
+          {{ avaliacao.imc }}
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="acao">
+        <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+        <mat-cell *matCellDef="let avaliacao">
+            <a routerLink="{{ '/admin/detalhes-avaliacao-antropometrica/' + avaliacao.id }}">
+                <mat-icon matTooltip="Detalhes">visibility</mat-icon>
+            </a>
+            &nbsp;
+            <a (click)="removerDialog(avaliacao.id)"
+                style="cursor: pointer"><mat-icon matTooltip="Excluir">clear</mat-icon></a>
+        </mat-cell>
+    </ng-container>
+</mat-table>
+
+<mat-paginator 
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 15, 25]">
+</mat-paginator>
+
+<a mat-raised-button routerLink="/admin/listagem">Voltar</a>

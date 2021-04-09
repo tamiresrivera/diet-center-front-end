@@ -1,0 +1,102 @@
+<h2 fxLayoutAlign="center" class="mat-title">Minha Agenda</h2>
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>add</mat-icon>
+        Adicionar novo horário na agenda
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="form" fxLayoutAlign="center" novalidate>
+        <mat-list>
+          <mat-list-item>
+            <mat-form-field>
+                <input matInput [matDatepicker]="data" 
+                    placeholder="Data" readonly="readonly"
+                    formControlName="data">
+                <mat-datepicker-toggle matSuffix 
+                    [for]="data"></mat-datepicker-toggle>
+                <mat-datepicker touchUi="true" #data></mat-datepicker>
+            </mat-form-field>
+          </mat-list-item>
+      
+          <mat-list-item>
+            <mat-form-field>
+              <mat-select 
+                placeholder="Horas" 
+                formControlName="horas">
+                <mat-option *ngFor="let hora of horas" 
+                  [value]="hora">
+                  {{ hora }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            &nbsp;:&nbsp;
+            <mat-form-field>
+              <mat-select 
+                placeholder="Minutos" 
+                formControlName="minutos">
+                <mat-option *ngFor="let minuto of minutos" 
+                  [value]="minuto">
+                  {{ minuto }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item fxLayoutAlign="center">
+            <button mat-raised-button color="light"
+                [disabled]="form.invalid" 
+                (click)="cadastrar()">
+                Adicionar
+            </button>
+          </mat-list-item>
+        </mat-list> 
+      </form>
+  </mat-expansion-panel>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+    <ng-container matColumnDef="dataHora">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Data e Horário
+        </mat-header-cell>
+        <mat-cell *matCellDef="let agenda">
+            {{ agenda.dataHora | date: 'dd/MM/YYYY HH:mm' : 'GMT' }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nomePaciente">
+        <mat-header-cell *matHeaderCellDef>
+            Paciente Agendado
+        </mat-header-cell>
+        <mat-cell *matCellDef="let agenda">
+            {{ agenda.nomePaciente }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acao">
+        <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+        <mat-cell *matCellDef="let agenda">
+            <a (click)="desmarcarDialog(agenda.id)"
+                style="cursor: pointer"><mat-icon matTooltip="Desmarcar Paciente" *ngIf="agenda.pacienteId">
+                    clear</mat-icon>
+            </a>
+            <a routerLink="{{ '/admin/associar-agenda/' + agenda.id }}" style="cursor: pointer"><mat-icon matTooltip="Agendar horário" *ngIf="!agenda.pacienteId">
+                    add</mat-icon>
+            </a>
+            &nbsp;
+            <a (click)="removerDialog(agenda.id)"
+                style="cursor: pointer"><mat-icon matTooltip="Remover horário">delete</mat-icon></a>
+        </mat-cell>
+    </ng-container>
+</mat-table>
+
+<mat-paginator 
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 15, 25]">
+</mat-paginator>

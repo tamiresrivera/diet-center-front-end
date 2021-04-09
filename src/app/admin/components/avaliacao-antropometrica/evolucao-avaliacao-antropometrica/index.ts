@@ -1,0 +1,1 @@
+export * from './evolucao-avaliacao-antropometrica.component';

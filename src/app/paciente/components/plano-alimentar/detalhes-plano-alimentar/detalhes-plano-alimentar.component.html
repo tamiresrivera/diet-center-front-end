@@ -1,0 +1,23 @@
+<h2 fxLayoutAlign="center" class="mat-title">Horário: {{ this.horario }}</h2>
+    <form [formGroup]="form" fxLayoutAlign="center" novalidate>
+        <mat-list>
+            <mat-form-field style="width: 100%;">
+                <input matInput placeholder="Categoria" formControlName="categoria" readonly>
+            </mat-form-field>
+            <p>
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput rows="8" formControlName="descricao" readonly></textarea>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Observação</mat-label>
+                    <textarea matInput rows="2" formControlName="observacao" readonly></textarea>
+                </mat-form-field>
+            </p>
+            <mat-list-item fxLayoutAlign="center">
+                <a mat-raised-button routerLink="paciente/plano-alimentar">Voltar</a>
+            </mat-list-item>
+        </mat-list> 
+      </form>

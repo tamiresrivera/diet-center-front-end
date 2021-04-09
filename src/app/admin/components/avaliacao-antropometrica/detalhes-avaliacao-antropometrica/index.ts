@@ -1,0 +1,1 @@
+export * from './detalhes-avaliacao-antropometrica.component';

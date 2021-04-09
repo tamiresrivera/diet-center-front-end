@@ -1,0 +1,1 @@
+export * from './editar-categoria-receita.component';

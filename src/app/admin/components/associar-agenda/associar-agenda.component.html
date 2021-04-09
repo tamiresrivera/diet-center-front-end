@@ -1,0 +1,30 @@
+<h2 fxLayoutAlign="center" class="mat-title">Agendar Horário</h2>
+
+    <h2 fxLayoutAlign="center" class="mat-title"> {{ dataHora }} </h2>
+    <form [formGroup]="form" fxLayoutAlign="center" novalidate>
+        <mat-list>
+          <mat-list-item>
+            <mat-form-field>
+                <mat-select placeholder="Pacientes"
+                  formControlName="pacs"
+                  [(value)]="pacienteId">
+                  <mat-option 
+                    *ngFor="let paciente of pacientes" 
+                    [value]="paciente.id">
+                    {{ paciente.nome }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </mat-list-item>
+
+          <mat-list-item fxLayoutAlign="center">
+            <button mat-raised-button color="light"
+                [disabled]="form.invalid" 
+                (click)="atualizar()">
+                Agendar
+            </button>
+            &nbsp;
+            <a mat-raised-button routerLink="/admin/agenda">Voltar</a>
+          </mat-list-item>
+        </mat-list> 
+      </form>

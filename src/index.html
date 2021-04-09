@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Diet Center</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="google-signin-client_id" content="380276783960-fjr3cnep2t9jk2ju2o3ljlv87rik7b1c.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js"></script>
+  <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('primeiro login 1');
+      document.getElementById("g-button").style.display = 'none';
+      window.location.href = "/cadastro-usuario/" + profile.getEmail() + "&" + profile.getName();
+    }
+  </script>
+</head>
+<body>
+  <app-root>
+  </app-root>
+</body>
+</html>

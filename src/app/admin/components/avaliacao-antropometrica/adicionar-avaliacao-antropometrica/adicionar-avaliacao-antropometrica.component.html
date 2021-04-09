@@ -1,0 +1,223 @@
+<h2 fxLayoutAlign="center" class="mat-title">Avaliação antropométrica</h2>
+<mat-card>
+<form [formGroup]="form" fxLayoutAlign="center" novalidate>
+      <mat-card-content>
+    <div
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayoutWrap
+          fxLayoutGap="3.5%"
+          fxLayoutAlign="left"
+    >
+        <mat-form-field>
+            <input matInput [matDatepicker]="data" 
+                placeholder="Data" readonly="readonly"
+                formControlName="dataHora">
+            <mat-datepicker-toggle matSuffix [for]="data"></mat-datepicker-toggle>
+            <mat-datepicker touchUi="true" #data></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayoutWrap
+          fxLayoutGap="3.5%"
+          fxLayoutAlign="left"
+          layout-margin
+    >
+        <mat-form-field class="example-full-width">
+            <mat-label>Altura (m)</mat-label>
+            <input matInput placeholder="Ex: 9.99" formControlName="altura">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Peso (Kg)</mat-label>
+            <input matInput placeholder="Ex: 99.9" formControlName="peso">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>IMC</mat-label>
+            <input matInput placeholder="Ex: 99.99" formControlName="imc">
+        </mat-form-field>
+    </div>
+
+    <div
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayoutWrap
+          fxLayoutGap="3.5%"
+          fxLayoutAlign="left"
+          layout-margin
+    >
+        <mat-form-field class="example-full-width">
+            <mat-label>% Massa gorda</mat-label>
+            <input matInput placeholder="Ex: 99.9" formControlName="percentualMassaGorda">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>% Massa magra</mat-label>
+            <input matInput placeholder="Ex: 99.9" formControlName="percentualMassaMagra">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Massa gorda (Kg)</mat-label>
+            <input matInput placeholder="Ex: 99.9" formControlName="massaGorda">
+        </mat-form-field>
+    </div>
+
+    <div
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayoutWrap
+          fxLayoutGap="3.5%"
+          fxLayoutAlign="left"
+          layout-margin
+    >
+        <mat-form-field class="example-full-width">
+            <mat-label>Massa magra (Kg)</mat-label>
+            <input matInput placeholder="Ex: 99.9" formControlName="massaMagra">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Peso osseo (Kg)</mat-label>
+            <input matInput placeholder="Ex: 9.99" formControlName="pesoOsseo">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Peso residual (Kg)</mat-label>
+            <input matInput placeholder="Ex: 99.99" formControlName="pesoResidual">
+        </mat-form-field>
+    </div>
+
+    <div
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayoutWrap
+          fxLayoutGap="3.5%"
+          fxLayoutAlign="left"
+          layout-margin
+    >
+        <mat-form-field class="example-full-width">
+            <mat-label>Peso muscular (Kg)</mat-label>
+            <input matInput placeholder="Ex: 99.99" formControlName="pesoMuscular">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Área muscular braço (cm²) (Kg)</mat-label>
+            <input matInput placeholder="Ex: 99.99" formControlName="areaMuscularBraco">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Área gordura braço (cm²)</mat-label>
+            <input matInput placeholder="Ex: 99.99" formControlName="areaGorduraBraco">
+        </mat-form-field>
+    </div>
+
+    <div 
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutWrap
+        fxLayoutGap="3.5%"
+        fxLayoutAlign="left"
+        layout-margin
+    >
+        <div formArrayName="circunferencias">
+            <button mat-raised-button color="light" (click)="addCircunferencias()">Adicionar Circunferência</button>
+            <div *ngFor="let circunferencia of circunferencias.controls; let i=index">
+                <div [formGroupName]="i">
+                    <mat-form-field>
+                        <mat-label>Categoria</mat-label>
+                        <mat-select placeholder="Categoria"
+                            formControlName="categoriaAvaliacaoCircunferenciaId">
+                            <mat-option 
+                                *ngFor="let categoria of categoriasCircunferencias" [value]="categoria.id">
+                                {{ categoria.descricao }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    &nbsp;
+                    <mat-form-field>
+                        <mat-label>Valor (cm)</mat-label>
+                        <input matInput #input placeholder="Ex: 99.9" formControlName="valor">
+                    </mat-form-field>
+                    
+                    <a (click)="removeCircunferencia(i)"
+                        style="cursor: pointer"><mat-icon matTooltip="Excluir">clear</mat-icon></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div 
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutWrap
+        fxLayoutGap="3.5%"
+        fxLayoutAlign="left"
+        layout-margin
+    >
+        <div formArrayName="pregas">
+            <button mat-raised-button color="light" (click)="addPregas()" style="margin-top:10px;">Adicionar prega cutânea</button>
+            <div *ngFor="let prega of pregas.controls; let i=index">
+                <div [formGroupName]="i">
+                    <mat-form-field>
+                        <mat-label>Categoria</mat-label>
+                        <mat-select placeholder="Categoria"
+                            formControlName="categoriaAvaliacaoPregaId">
+                            <mat-option 
+                                *ngFor="let categoria of categoriasPregas" [value]="categoria.id">
+                                {{ categoria.descricao }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    &nbsp;
+                    <mat-form-field>
+                        <mat-label>Valor (cm)</mat-label>
+                        <input matInput #input placeholder="Ex: 99.9" formControlName="valor">
+                    </mat-form-field>
+                    
+                    <a (click)="removePrega(i)"
+                        style="cursor: pointer"><mat-icon matTooltip="Excluir">clear</mat-icon></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div 
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayoutWrap
+    fxLayoutGap="3.5%"
+    fxLayoutAlign="left"
+    layout-margin
+    >   
+        <div formArrayName="diametros">
+            <button mat-raised-button color="light" (click)="addDiametros()" style="margin-top:10px;">Adicionar Diâmetro Osseo</button>
+            <div *ngFor="let diametro of diametros.controls; let i=index">
+                <div [formGroupName]="i">
+                    <mat-form-field>
+                        <mat-label>Categoria</mat-label>
+                        <mat-select placeholder="Categoria"
+                            formControlName="categoriaAvaliacaoDiametroOsseoId">
+                            <mat-option 
+                                *ngFor="let categoria of categoriasDiametros" [value]="categoria.id">
+                                {{ categoria.descricao }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    &nbsp;
+                    <mat-form-field>
+                        <mat-label>Valor (cm)</mat-label>
+                        <input matInput #input placeholder="Ex: 99.9" formControlName="valor">
+                    </mat-form-field>
+                    
+                    <a (click)="removeDiametro(i)"
+                        style="cursor: pointer"><mat-icon matTooltip="Excluir">clear</mat-icon></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayoutAlign="center" style="margin-top:10px;">
+        <button mat-raised-button color="light" [disabled]="form.invalid" (click)="cadastrar()">
+            Cadastrar
+        </button>
+        &nbsp;
+        <a mat-raised-button routerLink="{{ '/admin/avaliacao-antropometrica/' + pacienteId }}">Voltar</a>
+    </div>
+    </mat-card-content>
+</form>
+</mat-card>

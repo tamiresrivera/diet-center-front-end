@@ -1,0 +1,69 @@
+<h2 fxLayoutAlign="center" class="mat-title">Nossos Profissionais</h2>
+
+<mat-table [dataSource]="dataSource" matSort>
+    <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+    <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Nome
+        </mat-header-cell>
+        <mat-cell *matCellDef="let profissional">
+            {{ profissional.nome }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telefone">
+        <mat-header-cell *matHeaderCellDef>
+            Telefone
+        </mat-header-cell>
+        <mat-cell *matCellDef="let profissional">
+            {{ profissional.telefone }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cep">
+        <mat-header-cell *matHeaderCellDef>
+            CEP
+        </mat-header-cell>
+        <mat-cell *matCellDef="let profissional">
+            {{ profissional.cep }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cidade">
+        <mat-header-cell *matHeaderCellDef>
+            Cidade
+        </mat-header-cell>
+        <mat-cell *matCellDef="let profissional">
+            {{ profissional.cidade }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef>
+            Estado
+        </mat-header-cell>
+        <mat-cell *matCellDef="let profissional">
+            {{ profissional.estado }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acao">
+        <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+        <mat-cell *matCellDef="let profissional">
+            <a routerLink="{{ '/paciente/detalhes-profissional/' + profissional.profissionalId }}">
+                <mat-icon matTooltip="Visualizar Detalhes">visibility</mat-icon>
+            </a>
+            &nbsp;
+            <a routerLink="{{ '/paciente/agenda-profissional/' + profissional.profissionalId }}">
+                <mat-icon matTooltip="Visualizar agenda">event</mat-icon>
+            </a>
+        </mat-cell>
+    </ng-container>
+</mat-table>
+
+<mat-paginator 
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 15, 25]">
+</mat-paginator>

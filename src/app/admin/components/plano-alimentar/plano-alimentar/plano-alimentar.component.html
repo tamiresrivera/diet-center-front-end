@@ -1,0 +1,113 @@
+<h2 fxLayoutAlign="center" class="mat-title">Gerenciar Plano Alimentar de paciente</h2>
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>add</mat-icon>
+        Adicionar novo horário ao Plano Alimentar
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="form" novalidate>
+        <mat-list>
+            <mat-list-item>
+                <mat-form-field>
+                  <mat-select 
+                    placeholder="Horas" 
+                    formControlName="horas">
+                    <mat-option *ngFor="let hora of horas" 
+                      [value]="hora">
+                      {{ hora }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                &nbsp;:&nbsp;
+                <mat-form-field>
+                  <mat-select 
+                    placeholder="Minutos" 
+                    formControlName="minutos">
+                    <mat-option *ngFor="let minuto of minutos" 
+                      [value]="minuto">
+                      {{ minuto }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field>
+                <mat-select placeholder="Categorias"
+                  formControlName="cats">
+                  <mat-option 
+                    *ngFor="let categoria of categorias" 
+                    [value]="categoria.id">
+                    {{ categoria.descricao }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-list-item>
+            <p>
+              <mat-form-field style="width: 100%;">
+                  <mat-label>Descrição</mat-label>
+                  <textarea matInput rows="6" formControlName="descricao"></textarea>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field style="width: 100%;">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="2" formControlName="observacao"></textarea>
+              </mat-form-field>
+            </p>
+            <mat-list-item fxLayoutAlign="center">
+              <button mat-raised-button color="light"
+                  [disabled]="form.invalid" 
+                  (click)="cadastrar()">
+                  Adicionar
+              </button>
+            </mat-list-item>
+        </mat-list> 
+      </form>
+  </mat-expansion-panel>
+
+<mat-table [dataSource]="dataSource" matSort>
+	<mat-header-row 
+		*matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+
+    <ng-container matColumnDef="hora">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Hora
+      </mat-header-cell>
+      <mat-cell *matCellDef="let plano">
+        {{ plano.hora }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="categoria">
+        <mat-header-cell *matHeaderCellDef>
+          Categoria
+        </mat-header-cell>
+        <mat-cell *matCellDef="let plano">
+          {{ plano.descricaoCategoria }}
+        </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="acao">
+        <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+        <mat-cell *matCellDef="let plano">
+            <a routerLink="{{ '/admin/editar-plano-alimentar/' + plano.id }}">
+                <mat-icon matTooltip="Editar">edit</mat-icon>
+            </a>
+            &nbsp;
+            <a (click)="removerDialog(plano.id)"
+                style="cursor: pointer"><mat-icon matTooltip="Excluir">clear</mat-icon></a>
+        </mat-cell>
+    </ng-container>
+</mat-table>
+
+<mat-paginator 
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 15, 25]">
+</mat-paginator>
+
+<a mat-raised-button routerLink="/admin/listagem">Voltar</a>

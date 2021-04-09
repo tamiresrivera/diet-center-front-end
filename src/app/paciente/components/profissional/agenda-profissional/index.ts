@@ -1,0 +1,1 @@
+export * from './agenda-profissional.component';

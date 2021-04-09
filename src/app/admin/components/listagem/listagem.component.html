@@ -1,0 +1,54 @@
+<h2 fxLayoutAlign="center" class="mat-title">Meus Pacientes</h2>
+
+<mat-table [dataSource]="dataSource" matSort>
+    <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+    <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Nome
+        </mat-header-cell>
+        <mat-cell *matCellDef="let paciente">
+            {{ paciente.nome }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>
+            E-mail
+        </mat-header-cell>
+        <mat-cell *matCellDef="let paciente">
+            {{ paciente.email }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telefone">
+        <mat-header-cell *matHeaderCellDef>
+            Telefone
+        </mat-header-cell>
+        <mat-cell *matCellDef="let paciente">
+            {{ paciente.telefone }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acao">
+        <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+        <mat-cell *matCellDef="let paciente">
+            <a routerLink="{{ '/admin/informacao-paciente/' + paciente.id }}">
+                <mat-icon matTooltip="Gerenciar Informações">description</mat-icon>
+            </a>
+            &nbsp;
+            <a routerLink="{{ '/admin/plano-alimentar/' + paciente.id }}">
+                <mat-icon matTooltip="Gerenciar plano alimentar">restaurant</mat-icon>
+            </a>
+            &nbsp;
+            <a routerLink="{{ '/admin/avaliacao-antropometrica/' + paciente.id }}"
+                style="cursor: pointer"><mat-icon matTooltip="Gerenciar avaliações antropométricas">analytics</mat-icon></a>
+        </mat-cell>
+    </ng-container>
+</mat-table>
+
+<mat-paginator 
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 15, 25]">
+</mat-paginator>

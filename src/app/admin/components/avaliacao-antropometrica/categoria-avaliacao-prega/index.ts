@@ -1,0 +1,1 @@
+export * from './categoria-avaliacao-prega.component';

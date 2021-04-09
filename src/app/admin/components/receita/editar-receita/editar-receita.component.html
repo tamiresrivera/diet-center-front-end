@@ -1,0 +1,36 @@
+<h2 fxLayoutAlign="center" class="mat-title">Editar Receita</h2>
+    <form [formGroup]="form" fxLayoutAlign="center" novalidate>
+        <mat-list>
+                <mat-form-field>
+                    <input matInput
+                        placeholder="Título" formControlName="titulo">
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field>
+                    <mat-select placeholder="Categoria"
+                      formControlName="cats">
+                      <mat-option 
+                        *ngFor="let categoria of categorias" 
+                        [value]="categoria.id">
+                        {{ categoria.descricao }}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                &nbsp;
+                <p>
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput rows="8" formControlName="descricao"></textarea>
+                </mat-form-field>
+                </p>
+            <mat-list-item fxLayoutAlign="center">
+                <button mat-raised-button color="light"
+                    [disabled]="form.invalid" 
+                    (click)="atualizar()">
+                    Atualizar
+                </button>
+                &nbsp;
+                <a mat-raised-button routerLink="/admin/receita">Voltar</a>
+            </mat-list-item>
+        </mat-list> 
+      </form>

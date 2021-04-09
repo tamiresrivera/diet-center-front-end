@@ -1,0 +1,1 @@
+export * from './editar-plano-alimentar.component';

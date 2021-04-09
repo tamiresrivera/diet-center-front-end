@@ -1,0 +1,1 @@
+export * from './editar-categoria-avaliacao-circunferencia.component';

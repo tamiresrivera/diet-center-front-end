@@ -1,0 +1,116 @@
+<h2 fxLayoutAlign="center" class="mat-title">Editar cadastro</h2>
+<mat-card>
+    <form [formGroup]="form" fxLayoutAlign="center" novalidate>
+        <mat-card-content>
+            <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            >
+                <mat-form-field style="display: none;">
+                    <input matInput placeholder="Profissional Id" formControlName="profissionalId">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Nome" formControlName="nome">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="CPF" formControlName="cpf" mascara="999.999.999-99" readonly>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="CRN" formControlName="crn">
+                </mat-form-field>
+            </div>
+
+            <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            >
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="E-mail" formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Telefone" formControlName="telefone">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Mídia Social" formControlName="midiaSocial">
+                </mat-form-field>
+            </div>
+            <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            >
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Endereço" formControlName="endereco">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Número" formControlName="numero">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Complemento" formControlName="complemento">
+                </mat-form-field>
+            </div>
+            <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            >
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="CEP" formControlName="cep" mascara="99999-999">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Cidade" formControlName="cidade">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Estado" formControlName="estado">
+                </mat-form-field>
+            </div>
+            <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            >
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Mídia Social" formControlName="midiaSocial">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput type="password" placeholder="Nova Senha" formControlName="senha">
+                </mat-form-field>
+                <span matTooltip="Senha deve conter ao menos 6 caracteres">
+                    <mat-icon>help</mat-icon>
+                </span>
+            </div>
+            <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            >
+                <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Descrição" formControlName="descricao"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div fxLayoutAlign="center">
+                <button mat-raised-button color="light" [disabled]="form.invalid" (click)="atualizarCadastro()">
+                    Atualizar
+                </button>
+                &nbsp;
+                <a mat-raised-button routerLink="/admin/listagem">Voltar</a>
+            </div>
+
+        </mat-card-content>
+    </form>
+</mat-card>

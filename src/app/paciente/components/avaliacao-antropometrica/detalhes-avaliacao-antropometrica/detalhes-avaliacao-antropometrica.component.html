@@ -1,0 +1,172 @@
+<h2 fxLayoutAlign="center" class="mat-title">Avaliação antropométrica {{ this.dataHora }}</h2>
+<h2 fxLayoutAlign="center" class="mat-title">Resumo</h2>
+<mat-card>
+<form [formGroup]="form" fxLayoutAlign="center" novalidate>
+    <mat-card-content>
+        <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            layout-margin
+        >
+            <mat-form-field class="example-full-width">
+                <mat-label>Altura (m)</mat-label>
+                <input matInput placeholder="Ex: 9.99" formControlName="altura" readonly>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Peso (Kg)</mat-label>
+                <input matInput placeholder="Ex: 99.9" formControlName="peso" readonly>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>IMC</mat-label>
+                <input matInput placeholder="Ex: 99.99" formControlName="imc" readonly>
+            </mat-form-field>
+        </div>
+
+        <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            layout-margin
+        >
+            <mat-form-field class="example-full-width">
+                <mat-label>% Massa gorda</mat-label>
+                <input matInput placeholder="Ex: 99.9" formControlName="percentualMassaGorda" readonly>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>% Massa magra</mat-label>
+                <input matInput placeholder="Ex: 99.9" formControlName="percentualMassaMagra" readonly>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Massa gorda (Kg)</mat-label>
+                <input matInput placeholder="Ex: 99.9" formControlName="massaGorda" readonly>
+            </mat-form-field>
+        </div>
+
+        <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            layout-margin
+        >
+            <mat-form-field class="example-full-width">
+                <mat-label>Massa magra (Kg)</mat-label>
+                <input matInput placeholder="Ex: 99.9" formControlName="massaMagra" readonly>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Peso osseo (Kg)</mat-label>
+                <input matInput placeholder="Ex: 9.99" formControlName="pesoOsseo" readonly>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Peso residual (Kg)</mat-label>
+                <input matInput placeholder="Ex: 99.99" formControlName="pesoResidual" readonly>
+            </mat-form-field>
+        </div>
+
+        <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            layout-margin
+        >
+            <mat-form-field class="example-full-width">
+                <mat-label>Peso muscular (Kg)</mat-label>
+                <input matInput placeholder="Ex: 99.99" formControlName="pesoMuscular" readonly>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Área muscular braço (cm²) (Kg)</mat-label>
+                <input matInput placeholder="Ex: 99.99" formControlName="areaMuscularBraco" readonly>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Área gordura braço (cm²)</mat-label>
+                <input matInput placeholder="Ex: 99.99" formControlName="areaGorduraBraco" readonly>
+            </mat-form-field>
+        </div>
+
+        <h2 fxLayoutAlign="center" class="mat-title">Circunferências</h2>
+            <mat-table [dataSource]="dataSourceCircunferencia" matSort>
+                <mat-header-row 
+                    *matHeaderRowDef="colunas"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+            
+                <ng-container matColumnDef="categoria">
+                <mat-header-cell *matHeaderCellDef>
+                    Categoria
+                </mat-header-cell>
+                <mat-cell *matCellDef="let circunferencia">
+                    {{ circunferencia.descricaoCategoria }}
+                </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="valor">
+                <mat-header-cell *matHeaderCellDef>
+                    Valor
+                </mat-header-cell>
+                <mat-cell *matCellDef="let circunferencia">
+                    {{ circunferencia.valor }}
+                </mat-cell>
+                </ng-container>
+            </mat-table>
+
+            <h2 fxLayoutAlign="center" class="mat-title">Pregas Cutâneas</h2>
+            <mat-table [dataSource]="dataSourcePrega" matSort>
+                <mat-header-row 
+                    *matHeaderRowDef="colunas"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+            
+                <ng-container matColumnDef="categoria">
+                <mat-header-cell *matHeaderCellDef>
+                    Categoria
+                </mat-header-cell>
+                <mat-cell *matCellDef="let prega">
+                    {{ prega.descricaoCategoria }}
+                </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="valor">
+                <mat-header-cell *matHeaderCellDef>
+                    Valor
+                </mat-header-cell>
+                <mat-cell *matCellDef="let prega">
+                    {{ prega.valor }}
+                </mat-cell>
+                </ng-container>
+            </mat-table>
+
+            <h2 fxLayoutAlign="center" class="mat-title">Diâmetros Osseos</h2>
+            <mat-table [dataSource]="dataSourceDiametro" matSort>
+                <mat-header-row 
+                    *matHeaderRowDef="colunas"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+            
+                <ng-container matColumnDef="categoria">
+                <mat-header-cell *matHeaderCellDef>
+                    Categoria
+                </mat-header-cell>
+                <mat-cell *matCellDef="let diametro">
+                    {{ diametro.descricaoCategoria }}
+                </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="valor">
+                <mat-header-cell *matHeaderCellDef>
+                    Valor
+                </mat-header-cell>
+                <mat-cell *matCellDef="let diametro">
+                    {{ diametro.valor }}
+                </mat-cell>
+                </ng-container>
+            </mat-table>
+       
+        <div fxLayoutAlign="center" style="margin-top:10px;">
+            &nbsp;
+            <a mat-raised-button routerLink="/paciente/avaliacao-antropometrica">Voltar</a>
+        </div>
+    </mat-card-content>
+</form>
+</mat-card>

@@ -1,0 +1,85 @@
+<h2 fxLayoutAlign="center" class="mat-title">Cadastro de Receitas</h2>
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>add</mat-icon>
+        Adicionar nova Receita
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="form" novalidate>
+        <mat-list>
+            <mat-form-field>
+                <input matInput
+                    placeholder="Título" formControlName="titulo">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+                <mat-select placeholder="Categoria"
+                  formControlName="cats">
+                  <mat-option 
+                    *ngFor="let categoria of categorias" 
+                    [value]="categoria.id">
+                    {{ categoria.descricao }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            <p>
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput rows="8" formControlName="descricao"></textarea>
+                </mat-form-field>
+            </p>
+            <mat-list-item fxLayoutAlign="center">
+                <button mat-raised-button color="light"
+                    [disabled]="form.invalid" 
+                    (click)="cadastrar()">
+                    Cadastrar
+                </button>
+            </mat-list-item>
+        </mat-list> 
+    </form>
+</mat-expansion-panel>
+
+<mat-table [dataSource]="dataSource" matSort>
+	<mat-header-row 
+		*matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+
+    <ng-container matColumnDef="titulo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Título
+      </mat-header-cell>
+      <mat-cell *matCellDef="let receita">
+        {{ receita.titulo }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="categoria">
+      <mat-header-cell *matHeaderCellDef>
+        Categoria
+      </mat-header-cell>
+      <mat-cell *matCellDef="let receita">
+        {{ receita.categoriaReceitaDescricao }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="acao">
+        <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+        <mat-cell *matCellDef="let receita">
+            <a routerLink="{{ '/admin/editar-receita/' + receita.id }}">
+                <mat-icon matTooltip="Editar">edit</mat-icon>
+            </a>
+          &nbsp;
+            <a (click)="removerDialog(receita.id)"
+                style="cursor: pointer"><mat-icon matTooltip="Excluir">clear</mat-icon></a>
+        </mat-cell>
+    </ng-container>
+</mat-table>
+
+<mat-paginator 
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 15, 25]">
+</mat-paginator>

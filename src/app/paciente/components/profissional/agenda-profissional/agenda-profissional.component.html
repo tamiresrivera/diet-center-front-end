@@ -1,0 +1,28 @@
+<h2 fxLayoutAlign="center" class="mat-title">Horários disponíveis</h2>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: colunas;"></mat-row>
+    <ng-container matColumnDef="dataHora">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Data e Horário
+        </mat-header-cell>
+        <mat-cell *matCellDef="let agenda">
+            {{ agenda.dataHora | date: 'dd/MM/YYYY HH:mm' : 'GMT' }}
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acao">
+        <mat-header-cell *matHeaderCellDef>Ação</mat-header-cell>
+        <mat-cell *matCellDef="let agenda">
+            <a (click)="agendarDialog(agenda.id)"
+                style="cursor: pointer"><mat-icon matTooltip="Agendar horário">add</mat-icon></a>
+        </mat-cell>
+    </ng-container>
+</mat-table>
+
+<mat-paginator 
+  #paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 15, 25]">
+</mat-paginator>

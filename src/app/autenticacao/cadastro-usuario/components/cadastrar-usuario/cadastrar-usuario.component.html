@@ -1,0 +1,68 @@
+<h2 fxLayoutAlign="center" class="mat-title">Cadastro</h2>
+<mat-card>
+    <form [formGroup]="form" fxLayoutAlign="center" novalidate>
+        <mat-card-content>
+            <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            >
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Nome" formControlName="nome">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="CPF" formControlName="cpf" mascara="999.999.999-99">
+                </mat-form-field>
+            </div>
+            <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            >
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="E-mail" formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Telefone" formControlName="telefone">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Perfil</mat-label>
+                    <mat-select name="perfil" formControlName="perfil">
+                    <mat-option value="ROLE_USUARIO">Paciente</mat-option>
+                    <mat-option value="ROLE_ADMIN">Profissional</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutWrap
+            fxLayoutGap="3.5%"
+            fxLayoutAlign="left"
+            >
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Nome de Usuário" formControlName="nomeUsuario">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input type="password" matInput placeholder="Senha" formControlName="senha">
+                </mat-form-field>
+                <span matTooltip="Senha deve conter ao menos 6 caracteres">
+                    <mat-icon>help</mat-icon>
+                </span>
+            </div>
+
+            <div fxLayoutAlign="center">
+                <button mat-raised-button color="light" [disabled]="form.invalid" (click)="cadastrarUsuario()">
+                    Cadastrar
+                </button>
+                &nbsp;
+                <a mat-raised-button routerLink="/login">Voltar</a>
+            </div>
+
+        </mat-card-content>
+    </form>
+</mat-card>

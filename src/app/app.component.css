@@ -1,0 +1,19 @@
+.toolbar-icon {
+    padding: 0 14px;
+}
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    background-color: black;
+}
+
+mat-icon, span, a {
+    color: #FFF;
+}
+
+.menu-spacer {
+    flex: 1 1 auto;
+  }  
