@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost:8080/',
-  baseApiUrl: 'http://localhost:8080/api/'
+  baseUrl: 'https://blooming-hamlet-88333.herokuapp.com/',
+  baseApiUrl: 'https://blooming-hamlet-88333.herokuapp.com/api/'
 };
