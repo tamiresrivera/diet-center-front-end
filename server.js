@@ -1,12 +1,19 @@
+function requireHTTPS(req, res, next) {
+    // The 'x-forwarded-proto' check is for Heroku
+    if (!req.secure && req.get('x-forwarded-proto') !== 'https') {
+        return res.redirect('https://' + req.get('host') + req.url);
+    }
+    next();
+}
+
 const express = require('express');
-const path = require('path');
-const nomeApp = process.env.npm_package_name;
 const app = express();
 
-app.use(express.static(`${__dirname}/dist/${nomeApp}`));
+app.use(requireHTTPS);
+app.use(express.static('./dist/diet-center'));
 
-app.get('/*', (req, res) => {
-res.sendFile(path.join(`${__dirname}/dist/${nomeApp}/index.html`));
-});
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/diet-center/'}),
+);
 
 app.listen(process.env.PORT || 8080);
