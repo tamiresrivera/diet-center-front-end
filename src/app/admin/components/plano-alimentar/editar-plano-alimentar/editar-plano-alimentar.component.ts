@@ -67,7 +67,7 @@ export class EditarPlanoAlimentarComponent implements OnInit {
         dados => {
           const msg: string = "Plano Alimentar atualizado com sucesso";
           this.snackBar.open(msg, "Sucesso", { duration: 5000 });
-          this.router.navigate(['/admin/plano-alimentar' + this.usuarioPacienteId]);
+          this.router.navigate(['/admin/plano-alimentar' + this.pacienteId]);
         },
         err => {
           let msg: string = "Tente novamente em instantes.";
