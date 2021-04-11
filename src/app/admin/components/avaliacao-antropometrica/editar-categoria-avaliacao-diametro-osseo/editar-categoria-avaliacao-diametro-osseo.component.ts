@@ -51,7 +51,7 @@ export class EditarCategoriaAvaliacaoDiametroOsseoComponent implements OnInit {
         dados => {
           const msg: string = "Categoria atualizada com sucesso";
           this.snackBar.open(msg, "Sucesso", { duration: 5000 });
-          this.router.navigate(['/admin/categoria-plano-diametro-osseo']);
+          this.router.navigate(['/admin/categoria-avaliacao-diametro-osseo']);
         },
         err => {
           let msg: string = "Tente novamente em instantes.";
