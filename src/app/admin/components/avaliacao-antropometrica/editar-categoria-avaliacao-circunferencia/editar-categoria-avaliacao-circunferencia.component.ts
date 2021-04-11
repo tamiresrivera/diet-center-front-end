@@ -48,7 +48,7 @@ export class EditarCategoriaAvaliacaoCircunferenciaComponent implements OnInit {
         dados => {
           const msg: string = "Categoria atualizada com sucesso";
           this.snackBar.open(msg, "Sucesso", { duration: 5000 });
-          this.router.navigate(['/admin/categoria-plano-circunferencia']);
+          this.router.navigate(['/admin/categoria-avaliacao-circunferencia']);
         },
         err => {
           let msg: string = "Tente novamente em instantes.";
