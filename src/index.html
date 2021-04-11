@@ -13,7 +13,6 @@
     function onSignIn(googleUser) {
       var profile = googleUser.getBasicProfile();
       console.log('primeiro login 1');
-      document.getElementById("g-button").style.display = 'none';
       window.location.href = "/cadastro-usuario/" + profile.getEmail() + "&" + profile.getName();
     }
   </script>
