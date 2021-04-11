@@ -51,7 +51,7 @@ export class EditarCategoriaAvaliacaoPregaComponent implements OnInit {
         dados => {
           const msg: string = "Categoria atualizada com sucesso";
           this.snackBar.open(msg, "Sucesso", { duration: 5000 });
-          this.router.navigate(['/admin/categoria-plano-alimentar']);
+          this.router.navigate(['/admin/ategoria-avaliacao-prega']);
         },
         err => {
           let msg: string = "Tente novamente em instantes.";
